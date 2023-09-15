@@ -1,4 +1,4 @@
-import { addOperator, addToDisplay, getEquation, handleEquals, operate, resetAll } from './functions.js';
+import { addOperator, addToDisplay, handleDelete, handleEquals, resetAll } from './functions.js';
 
 const body = document.querySelector('body');
 
@@ -49,12 +49,23 @@ function createButtons() {
     const div = document.createElement('div');
     div.className = 'buttonsDiv';
 
+    /* Issues with delete button
+
+    const digits = ['DEL', '', '', 'Clear', 7, 8, 9, '+', 4, 5, 6, '-', 1, 2, 3, 'X', '.', 0, '=', '÷'];
+    */
+
     const digits = ['', '', '', 'Clear', 7, 8, 9, '+', 4, 5, 6, '-', 1, 2, 3, 'X', '.', 0, '=', '÷'];
     const numbers = ['.', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
     const operators = ['+', '-', 'X', '÷'];
     const set1 = [7, 11, 15, 19];
     const set2 = [3, 16, 18];
     const set3 = [0, 1, 2];
+
+    /* Issues with delete button
+
+    const set3 = [1, 2];
+    */
+
 
     for (let i = 0; i < 20; i++) {
         const button = document.createElement('button');
@@ -64,7 +75,6 @@ function createButtons() {
 
         if (set1.includes(i)) {
             button.style.backgroundColor = 'lightblue';
-            button.setAttribute
         }
         else if (set2.includes(i)) {
             button.style.backgroundColor = 'cadetblue';
@@ -92,6 +102,13 @@ function addListeners() {
 
     const equalsBtn = document.querySelector('[data-key="="]');
     equalsBtn.addEventListener('click', handleEquals);
+
+    /*  Delete button only works for last number.
+        Deleting more than that messes up the equation.
+
+    const deleteBtn = document.querySelector('[data-key="DEL"]');
+    deleteBtn.addEventListener('click', handleDelete);
+    */
 
     const numberBtns = document.querySelectorAll('[data-type="number"]');
     numberBtns.forEach(btn => btn.addEventListener('click', addToDisplay));

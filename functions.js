@@ -44,7 +44,6 @@ function divide(a, b) {
 }
 
 export function resetAll() {
-    console.log('resetAll')
     const display = document.getElementById('display');
     display.textContent = '';
     isComplete = false;
@@ -53,7 +52,6 @@ export function resetAll() {
 }
 
 export function addToDisplay(e) {
-    console.log('addToDisplay')
     const input = e.target.dataset.key;
     const display = document.getElementById('display');
     if (isComplete) {
@@ -61,43 +59,34 @@ export function addToDisplay(e) {
         isComplete = false;
     }
     let current = display.textContent;
-    console.log('current', current);
     current += input;
-    console.log('2 current', current)
 
     display.textContent = current;
 }
 
 export function addOperator(e) {
-    console.log('addOperator')
     const display = document.getElementById('display');
     const firstNum = parseFloat(display.textContent);
 
-    console.log('currentOp', currentOp);
     if (currentOp !== null) {
         if (isComplete) {
-            console.log('isComplete - currentResult',currentResult)
             isComplete = !isComplete;
         }
         else {
             currentResult = getEquation();
-            console.log('currentResult', currentResult);
         }
     }
     currentOp = e.target.dataset.key;
-    console.log('2 currentOp', currentOp)
     insertOperator(e);
 }
 
 function insertOperator(e) {
-    console.log('insertOperator')
     const display = document.getElementById('display');
     const opKey = e.target.dataset.key;
     display.textContent += (' ' + opKey + ' ');
 }
 
 export function getEquation() {
-    console.log('getEquation')
     const display = document.getElementById('display');
     display.textContent += ' = ';
     const equation = display.textContent;
@@ -112,7 +101,13 @@ export function getEquation() {
 }
 
 export function handleEquals() {
-    console.log('handleEquals')
     isComplete = true;
     getEquation();
+}
+
+export function handleDelete() {
+    const display = document.getElementById('display');
+    let currentContent = display.textContent;
+    let newContent = currentContent.slice(0, -1);
+    display.textContent = newContent;
 }
