@@ -1,4 +1,4 @@
-import { addOperator, addToDisplay, getEquation, operate, resetAll } from './functions.js';
+import { addOperator, addToDisplay, getEquation, handleEquals, operate, resetAll } from './functions.js';
 
 const body = document.querySelector('body');
 
@@ -91,7 +91,7 @@ function addListeners() {
     clearBtn.addEventListener('click', resetAll);
 
     const equalsBtn = document.querySelector('[data-key="="]');
-    equalsBtn.addEventListener('click', getEquation);
+    equalsBtn.addEventListener('click', handleEquals);
 
     const numberBtns = document.querySelectorAll('[data-type="number"]');
     numberBtns.forEach(btn => btn.addEventListener('click', addToDisplay));
